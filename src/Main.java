@@ -19,7 +19,7 @@ public class Main {
         Quiz quiz = new Quiz();
         quiz.displayMenu(); // 👈 Main menu: Start / View Results / Exit
 
-        System.out.println("👋 Thanks for playing! Goodbye!");
+        System.out.println("👋 Thanks for playing! ");
         System.out.println("   Made by Sajid Hussain ❤️");
     }
 }
