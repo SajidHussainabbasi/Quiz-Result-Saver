@@ -26,7 +26,7 @@ The program records each user’s name and score in a `results.txt` file, ensuri
 ✅ Saves user name and score to `results.txt`  
 ✅ Uses **try-with-resources** for safe file operations  
 ✅ Gracefully handles I/O exceptions  
-✅ Easy-to-understand, interactive console quiz  
+✅ Easy-to-understand, interactive console quiz and Quiz Menu 
 ✅ Demonstrates Java file writing and exception handling in a practical project
 
 ---

@@ -1,21 +1,15 @@
 /*
-🧠 Quiz Result Saver
+🧠 Quiz Result Saver with Menu
 Concepts: Writing & Reading, Exception Handling
 
-Create a quiz program that:
+Features:
+- 5 Multiple-choice questions
+- Saves results to results.txt
+- Lets user view all saved results
+- Graceful file I/O exception handling
+- Uses try-with-resources
+*/
 
-Asks 5 multiple-choice questions.
-
-Saves results to a file (results.txt) like:
-
-User: Sam
-Score: 4/5
-Handle all file I/O exceptions gracefully.
-
-Use try-with-resources for writing the results file.
-
-
- */
 public class Main {
     public static void main(String[] args) {
         System.out.println("===== 🧠 QUIZ RESULT SAVER =====");
@@ -23,8 +17,9 @@ public class Main {
         System.out.println("==================================");
 
         Quiz quiz = new Quiz();
-        quiz.startQuiz();
+        quiz.displayMenu(); // 👈 Main menu: Start / View Results / Exit
 
-        System.out.println("👋 Thanks for playing!,Good Bye\nMade By Sajid Hussain");
+        System.out.println("👋 Thanks for playing! Goodbye!");
+        System.out.println("   Made by Sajid Hussain ❤️");
     }
 }

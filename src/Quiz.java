@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Quiz {
 
     public Quiz() {
         // Initialize 5 sample questions
-        questions = new Question[] {
+        questions = new Question[]{
                 new Question("1️⃣ What is the capital of France?",
                         new String[]{"Berlin", "Madrid", "Paris", "Rome"}, 'C'),
                 new Question("2️⃣ Which planet is known as the Red Planet?",
@@ -23,11 +24,40 @@ public class Quiz {
         };
     }
 
+    // === MENU SYSTEM ===
+    public void displayMenu() {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n====== 🧠 QUIZ MENU ======");
+            System.out.println("1️⃣ Start New Quiz");
+            System.out.println("2️⃣ View All Results");
+            System.out.println("3️⃣ Exit");
+            System.out.print("Choose an option: ");
+            while (!sc.hasNextInt()) {
+                System.out.print("⚠️ Please enter a valid number (1-3): ");
+                sc.next();
+            }
+            choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1 -> startQuiz();
+                case 2 -> showAllResults(); // 👈 Show results option
+                case 3 -> System.out.println("👋 Exiting... Goodbye!");
+                default -> System.out.println("⚠️ Invalid choice! Try again.");
+            }
+        } while (choice != 3);
+    }
+
+    // === QUIZ LOGIC ===
     public void startQuiz() {
         Scanner sc = new Scanner(System.in);
-
         System.out.print("Enter your name: ");
         userName = sc.nextLine();
+
+        score = 0;
 
         for (Question q : questions) {
             q.displayQuestion();
@@ -46,6 +76,7 @@ public class Quiz {
         saveResult();
     }
 
+    // === SAVE RESULT TO FILE ===
     private void saveResult() {
         try (FileWriter writer = new FileWriter("results.txt", true)) {
             writer.write("User: " + userName + "\n");
@@ -54,6 +85,25 @@ public class Quiz {
             System.out.println("✅ Result saved successfully to results.txt");
         } catch (IOException e) {
             System.out.println("❌ Error saving results: " + e.getMessage());
+        }
+    }
+
+    // === DISPLAY ALL SAVED RESULTS ===
+    private void showAllResults() {
+        File file = new File("results.txt");
+
+        if (!file.exists()) {
+            System.out.println("📁 No results found yet!");
+            return;
+        }
+
+        System.out.println("\n====== 📜 ALL QUIZ RESULTS ======");
+        try (Scanner fileScanner = new Scanner(file)) {
+            while (fileScanner.hasNextLine()) {
+                System.out.println(fileScanner.nextLine());
+            }
+        } catch (IOException e) {
+            System.out.println("❌ Error reading results: " + e.getMessage());
         }
     }
 }

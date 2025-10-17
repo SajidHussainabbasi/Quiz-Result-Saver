@@ -12,7 +12,7 @@ public class Question {
     public void displayQuestion() {
         System.out.println("\n" + questionText);
         for (int i = 0; i < options.length; i++) {
-            System.out.println((char)('A' + i) + ". " + options[i]);
+            System.out.println((char) ('A' + i) + ". " + options[i]);
         }
     }
 
@@ -20,3 +20,4 @@ public class Question {
         return Character.toUpperCase(answer) == correctAnswer;
     }
 }
+
